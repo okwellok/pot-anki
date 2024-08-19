@@ -1,14 +1,9 @@
 async function collection(source, target, options = {}) {
     const { config, utils } = options;
-    const { http, store } = utils;
+    const { http } = utils;
     const { fetch, Body } = http;
 
-    let ankiConfig = (await store.get('anki')) ?? {};
-    if (config !== undefined) {
-        ankiConfig = config;
-    }
-    const port = ankiConfig['port'] ?? 8765;
-
+    const { port = 8765 } = config;
 
     async function ankiConnect(action, version, params = {}) {
         let res = await fetch(`http://127.0.0.1:${port}`, {
@@ -34,7 +29,7 @@ async function collection(source, target, options = {}) {
                 }
             }
         } else {
-            return target;
+            return typeof target;
         }
 
         return result;
