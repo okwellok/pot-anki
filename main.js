@@ -15,8 +15,9 @@ async function collection(source, target, options = {}) {
 
     function ankiText(target) {
         let result = '';
-        if (typeof target === 'object') {
-            for (let explanation of target.explanations) {
+        if (typeof target === 'string') {
+            targetObj=JSON.parse(target)
+            for (let explanation of targetObj.explanations) {
                 result += explanation.trait + '. ';
                 let index = 0;
                 for (let explain of explanation.explains) {
