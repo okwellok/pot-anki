@@ -1,9 +1,14 @@
 async function collection(source, target, options = {}) {
     const { config, utils } = options;
-    const { http } = utils;
+    const { http, store } = utils;
     const { fetch, Body } = http;
 
-    const { port = 8765 } = config;
+    let ankiConfig = (await store.get('anki')) ?? {};
+    if (config !== undefined) {
+        ankiConfig = config;
+    }
+    const port = ankiConfig['port'] ?? 8765;
+
 
     async function ankiConnect(action, version, params = {}) {
         let res = await fetch(`http://127.0.0.1:${port}`, {
@@ -29,7 +34,7 @@ async function collection(source, target, options = {}) {
                 }
             }
         } else {
-            return "不是Object类型";
+            return target;
         }
 
         return result;
