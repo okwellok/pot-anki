@@ -14,7 +14,7 @@ async function collection(source, target, options = {}) {
     }
 
     function ankiText(target) {
-        let result = '';
+        let result = 'test';
         // if (typeof target === 'object') {
         //     for (let explanation of target.explanations) {
         //         result += explanation.trait + '. ';
@@ -32,7 +32,7 @@ async function collection(source, target, options = {}) {
         //     return target;
         // }
 
-        return target;
+        return result;
     }
 
     function ankiPronunciation(target) {
