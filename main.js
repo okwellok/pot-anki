@@ -14,23 +14,23 @@ async function collection(source, target, options = {}) {
     }
 
     function ankiText(target) {
-        let result = 'test';
-        // if (typeof target === 'object') {
-        //     for (let explanation of target.explanations) {
-        //         result += explanation.trait + '. ';
-        //         let index = 0;
-        //         for (let explain of explanation.explains) {
-        //             index++;
-        //             if (index !== explanation.explains.length) {
-        //                 result += explain + '; ';
-        //             } else {
-        //                 result += explain + '<br>';
-        //             }
-        //         }
-        //     }
-        // } else {
-        //     return target;
-        // }
+        let result = '';
+        if (typeof target === 'object') {
+            for (let explanation of target.explanations) {
+                result += explanation.trait + '. ';
+                let index = 0;
+                for (let explain of explanation.explains) {
+                    index++;
+                    if (index !== explanation.explains.length) {
+                        result += explain + '; ';
+                    } else {
+                        result += explain + '<br>';
+                    }
+                }
+            }
+        } else {
+            return "不是Object类型";
+        }
 
         return result;
     }
